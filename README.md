@@ -17,4 +17,6 @@ OR simply run `rake prepare_project`
 
 to run project use `rails s`
 
-You can find working project under this url: 
+You can find working project under this url: https://recipes-app-k.herokuapp.com/recipes
+
+Hope it won't be dead when you take a look at it. :)
