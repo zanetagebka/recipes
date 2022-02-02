@@ -1,24 +1,20 @@
-# README
+# RECIPES APP README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Hi! 
 
-Things you may want to cover:
+I decided to do it this way (create model) and seed database.
+In `files` folder you will see JSON file with recipes.
+This file is used by service `app/services/recipe_service.rb` which reads it 
+and allow to create table and seed it by data.
 
-* Ruby version
+To setup project correctly you will need to follow these steps:
 
-* System dependencies
+run `rake db:create` \
+run `rake db:migrate` \
+run `rake db:seed` 
 
-* Configuration
+OR simply run `rake prepare_project`
 
-* Database creation
+to run project use `rails s`
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+You can find working project under this url: 
