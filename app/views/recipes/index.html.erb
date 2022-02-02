@@ -1,0 +1,20 @@
+<%= render partial: 'search_bar', locals: { path: recipes_path } %>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <% @recipes.each do |recipe| %>
+      <div class="card m-2" style="width: 18rem;">
+        <% if recipe.image.present? %>
+          <%= image_tag(recipe.image, size: '150', class: 'card-img-top') %>
+        <% end %>
+        <div class="card-body">
+          <h5 class="card-title"><%= recipe.name %>></h5>
+          <%= link_to('Details', recipe_path(recipe), class: 'btn btn-primary') %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="digg_pagination">
+  <%= will_paginate @recipes %>
+</div>
