@@ -10,7 +10,7 @@ class RecipeWithMatchQuery
 
   def call(params)
     scoped = search(initial_scope, params[:search])
-    # scoped = sort_by_rate(scoped) # sort by rate only => add it as checkbox param
+    scoped = sort_by_rate(scoped) # sort by rate only => add it as checkbox param
     # scoped = sort_by_matching_ingredients(scoped) # add it as checkbox param
     # add search by number of matching ingredients
     scoped = paginate(scoped, params[:page])
@@ -21,7 +21,8 @@ class RecipeWithMatchQuery
 
   def search(scoped, query = nil)
     query = prepare_query(query)
-    query ? scoped.where("array_to_string(ingredients, '') ILIKE ANY ( array[?] )", query).group("id").order(Arel.sql('count(ingredients)')) : scoped
+
+    query ? scoped.where("array_to_string(ingredients, '') ILIKE ANY (array[?])", query) : scoped
   end
 
   def sort_by_rate(scoped)
