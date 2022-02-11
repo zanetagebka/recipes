@@ -9,8 +9,7 @@ class RecipeWithMatchQuery
     scoped = search(initial_scope, params[:search])
     scoped = sort_by_matching_ingredients(scoped, params[:search])
     scoped = sort_by_rate(scoped)
-    scoped = paginate(scoped, params[:page])
-    scoped
+    paginate(scoped, params[:page])
   end
 
   private
