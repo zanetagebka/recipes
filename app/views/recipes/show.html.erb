@@ -1,30 +1,25 @@
 <div class="container">
-
-
-    <div class="card mt-5">
-      <h5 class="card-header text-center"><%= @recipe.name %></h5>
-      <div class="card-body">
-        <div class="d-flex justify-content-between p-5">
-          <%= image_tag(@recipe.image, size: 200) if @recipe.image.present? %>
-          <div>
-            <p>Author: <%= @recipe.author %></p>
-            <p>Budget: <%= @recipe.budget %></p>
-            <p><span class="oi oi-timer"></span>Preparation time: <%= @recipe.prep_time %></p>
-            <p>Total time: <%= @recipe.total_time %></p>
-            <p>Rate: <%= @recipe.rate %></p>
-          </div>
+  <div class="card mt-5">
+    <h5 class="card-header text-center"><%= @recipe.name %></h5>
+    <div class="card-body">
+      <div class="d-flex justify-content-between p-5">
+        <%= image_tag(@recipe.image, size: 200) if @recipe.image.present? %>
+        <div>
+          <p>Author: <%= @recipe.author %></p>
+          <p>Budget: <%= @recipe.budget %></p>
+          <p><span class="oi oi-timer"></span>Preparation time: <%= @recipe.prep_time %></p>
+          <p>Total time: <%= @recipe.total_time %></p>
+          <p>Rate: <%= @recipe.rate %></p>
         </div>
-        <h5 class="text-center">Ingredients</h5>
-        <ul class="list-group list-group-flush">
-          <% @recipe.ingredients.each do |ingredient| %>
-            <li class="list-group-item"><%= ingredient %></li>
-          <% end %>
-        </ul>
-
       </div>
-      <%= link_to('Go back to index', recipes_path, class: 'btn btn-primary btn-lg btn-block') %>
+      <h5 class="text-center">Ingredients</h5>
+      <ul class="list-group list-group-flush">
+        <% @recipe.ingredients.each do |ingredient| %>
+          <li class="list-group-item"><%= ingredient %></li>
+        <% end %>
+      </ul>
+
     </div>
-
-
-
+    <%= link_to('Go back to index', recipes_path, class: 'btn btn-primary btn-lg btn-block') %>
+  </div>
 </div>
