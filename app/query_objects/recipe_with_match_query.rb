@@ -24,15 +24,14 @@ class RecipeWithMatchQuery
     query ? scoped.where("array_to_string(ingredients, '') ILIKE ANY (array[?])", query) : scoped
   end
 
-  def sort_by_rate(scoped)
-    scoped.order(rate: :desc)
+  def sort_by_matching_ingredients(scoped, query)
+    conditions = prepare_order_conditions(query)
+
+    scoped.order(Arel.sql("(CONCAT(#{conditions})) DESC"))
   end
 
-  def sort_by_matching_ingredients(scoped, param)
-    query = prepare_query(param)
-
-    conditions = query.map { |term| "(array_to_string(ingredients, '') ILIKE #{"'#{term}'"})" }.join(', ')
-    scoped.order(Arel.sql("(CONCAT(#{conditions})) DESC"))
+  def sort_by_rate(scoped)
+    scoped.order(rate: :desc)
   end
 
   def paginate(scoped, param)
@@ -41,6 +40,12 @@ class RecipeWithMatchQuery
 
   def prepare_query(query)
     query.downcase.split(',').map(&:strip).map { |val| "%#{val}%" }
+  end
+
+  def prepare_order_conditions(query)
+    query = prepare_query(query)
+
+    query.map { |term| "(array_to_string(ingredients, '') ILIKE #{"'#{term}'"})" }.join(', ')
   end
 
 end
