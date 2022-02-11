@@ -1,3 +1,7 @@
+# Query match user input with recipe ingredients and returns
+# most matching at top (by number of matching ingredients).
+# Second match is by rate, but with prioritizing user search.
+
 class RecipeWithMatchQuery
   attr_accessor :initial_scope
 
